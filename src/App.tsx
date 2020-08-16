@@ -1,7 +1,19 @@
 import React from "react";
 
+import GlobalStyle from "./assets/styles/global";
+
+import Header from "./components/Header";
+import Board from "./components/Board";
+
 function App() {
-  return <h1>Hello React</h1>;
+  return (
+    <>
+      <Header />
+      <Board />
+
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;
