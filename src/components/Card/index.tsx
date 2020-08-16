@@ -2,19 +2,28 @@ import React from "react";
 
 import { Container, Label } from "./styles";
 
-function Card() {
+interface Data {
+  data: ICard;
+}
+export interface ICard {
+  id: number;
+  content: string;
+  labels: Array<string>;
+  user?: string;
+}
+
+const Card: React.FC<Data> = ({ data }) => {
   return (
     <Container>
       <header>
-        <Label color="#7259c1" />
+        {data.labels.map((label) => (
+          <Label key={label} color={label} />
+        ))}
       </header>
-      <p>Fazer migração completa de servidor</p>
-      <img
-        src="https://api.adorable.io/avatars/285/abott@adorable.png"
-        alt="Avatar"
-      />
+      <p>{data.content}</p>
+      {data.user && <img src={data.user} alt="Avatar" />}
     </Container>
   );
-}
+};
 
 export default Card;
