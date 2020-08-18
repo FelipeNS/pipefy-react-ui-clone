@@ -7,6 +7,7 @@ import { Container } from "./styles";
 
 interface Data {
   data: IList;
+  index: number;
 }
 export interface IList {
   title: string;
@@ -15,7 +16,7 @@ export interface IList {
   done?: boolean;
 }
 
-const List: React.FC<Data> = ({ data }) => {
+const List: React.FC<Data> = ({ data, index: listIndex }) => {
   return (
     <Container done={data?.done}>
       <header>
@@ -28,8 +29,8 @@ const List: React.FC<Data> = ({ data }) => {
       </header>
 
       <ul>
-        {data.cards.map((card) => (
-          <Card key={card.id} data={card} />
+        {data.cards.map((card, index) => (
+          <Card key={card.id} index={index} listIndex={listIndex} data={card} />
         ))}
       </ul>
     </Container>
