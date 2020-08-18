@@ -17,7 +17,7 @@ export interface IList {
 
 const List: React.FC<Data> = ({ data }) => {
   return (
-    <Container done={data.done ? data.done : false}>
+    <Container done={data?.done}>
       <header>
         <h2>{data.title}</h2>
         {data.creatable && (

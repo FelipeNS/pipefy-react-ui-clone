@@ -1,4 +1,5 @@
 import React from "react";
+import { useDrag } from "react-dnd";
 
 import { Container, Label } from "./styles";
 
@@ -13,8 +14,15 @@ export interface ICard {
 }
 
 const Card: React.FC<Data> = ({ data }) => {
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { type: "CARD" },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
   return (
-    <Container>
+    <Container ref={dragRef} isDragging={isDragging}>
       <header>
         {data.labels.map((label) => (
           <Label key={label} color={label} />
